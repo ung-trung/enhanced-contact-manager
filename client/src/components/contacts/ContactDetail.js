@@ -11,7 +11,7 @@ const ContactDetail = () => {
   const { deleteContact } = useContext(ContactContext);
 
   return (
-    <div className="ui fluid card">
+    <div className="ui fluid card" style={{ backgroundColor: '#F5F5F5' }}>
       <div className="content">
         <div
           className={`ui right floated label ${

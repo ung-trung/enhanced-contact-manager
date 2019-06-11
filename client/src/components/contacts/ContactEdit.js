@@ -22,11 +22,14 @@ const ContactEdit = () => {
       phone: newPhone,
       type: newType
     });
+    setNeedEdit(false);
   };
 
   return (
     <div className="ui segment">
-      <h3 className="header">Edit Contact for {name}</h3>
+      <h3 className="header">
+        Edit Contact for <strong>{name} </strong>
+      </h3>
       <form className="ui form" onSubmit={onSubmit}>
         <div className="field">
           <input

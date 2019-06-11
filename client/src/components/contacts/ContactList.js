@@ -1,19 +1,32 @@
 import React, { useContext } from 'react';
 import ContactContext from '../../contexts/contact/ContactContext';
-import uuid from 'uuid';
 
 import ContactItem from './ContactItem';
 
 const ContactList = () => {
-  const { contacts } = useContext(ContactContext);
+  const { contacts, filtered } = useContext(ContactContext);
 
-  return (
-    <div className="ui list">
-      {contacts.map(contact => (
-        <ContactItem contact={contact} key={uuid()} />
-      ))}
-    </div>
-  );
+  const renderContacItem = () => {
+    if (filtered) {
+      return (
+        <div className="ui list">
+          {filtered.map(contact => (
+            <ContactItem contact={contact} key={contact.id} />
+          ))}
+        </div>
+      );
+    } else {
+      return (
+        <div className="ui list">
+          {contacts.map(contact => (
+            <ContactItem contact={contact} key={contact.id} />
+          ))}
+        </div>
+      );
+    }
+  };
+
+  return <> {renderContacItem()} </>;
 };
 
 export default ContactList;
