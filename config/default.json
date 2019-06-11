@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://trungung:Trung123@enhanced-contact-manager-coo4y.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "secret"
+}
