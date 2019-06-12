@@ -1,6 +1,7 @@
 import React from 'react';
 
 const About = () => {
+  console.log('From About');
   return (
     <>
       <h1 className="header">About this App</h1>

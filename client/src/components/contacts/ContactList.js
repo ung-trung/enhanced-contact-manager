@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 import ContactContext from '../../contexts/contact/ContactContext';
 
 import ContactItem from './ContactItem';
@@ -9,24 +11,32 @@ const ContactList = () => {
   const renderContacItem = () => {
     if (filtered) {
       return (
-        <div className="ui list">
+        <>
           {filtered.map(contact => (
-            <ContactItem contact={contact} key={contact.id} />
+            <CSSTransition key={contact.id} timeout={1000} classNames="item">
+              <ContactItem contact={contact} key={contact.id} />
+            </CSSTransition>
           ))}
-        </div>
+        </>
       );
     } else {
       return (
-        <div className="ui list">
+        <>
           {contacts.map(contact => (
-            <ContactItem contact={contact} key={contact.id} />
+            <CSSTransition key={contact.id} timeout={1000} classNames="item">
+              <ContactItem contact={contact} key={contact.id} />
+            </CSSTransition>
           ))}
-        </div>
+        </>
       );
     }
   };
 
-  return <> {renderContacItem()} </>;
+  return (
+    <div className="ui list">
+      <TransitionGroup> {renderContacItem()} </TransitionGroup>
+    </div>
+  );
 };
 
 export default ContactList;

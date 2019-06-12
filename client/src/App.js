@@ -5,24 +5,38 @@ import NavBar from './components/layout/NavBar';
 
 import Home from './components/pages/Home';
 import About from './components/pages/About';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
 
 import ContactState from './contexts/contact/ContactState';
+import AuthState from './contexts/auth/AuthState';
+import AlertState from './contexts/alert/AlertState';
+
+import setAuthToken from './utils/setAuthToken';
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 function App() {
   return (
-    <>
+    <AuthState>
       <ContactState>
-        <Router>
-          <NavBar />
-          <div className="ui container">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/about" component={About} />
-            </Switch>
-          </div>
-        </Router>
+        <AlertState>
+          <Router>
+            <NavBar />
+            <div className="ui container">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/about" component={About} />
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} />
+              </Switch>
+            </div>
+          </Router>
+        </AlertState>
       </ContactState>
-    </>
+    </AuthState>
   );
 }
 

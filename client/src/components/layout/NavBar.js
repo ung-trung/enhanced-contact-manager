@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const NavBar = ({ title, icon }) => {
   return (
-    <div className="large ui menu">
+    <div className="ui menu">
       <div className="ui container">
         <a href="/" className="item">
           <i className={icon} />
@@ -12,16 +12,20 @@ const NavBar = ({ title, icon }) => {
         </a>
         <div className="right menu">
           <Link to="/" className="item">
-            <div className="ui button">
-              <i className="home icon" />
-              Home
-            </div>
+            <i className="home icon" />
+            Home
           </Link>
           <Link to="/about" className="item">
-            <div className="ui button">
-              <i className="info circle icon" />
-              About
-            </div>
+            <i className="info circle icon" />
+            About
+          </Link>
+          <Link to="/register" className="item">
+            <i className="info registered icon" />
+            Register
+          </Link>
+          <Link to="/login" className="item">
+            <i className="info user icon" />
+            Login
           </Link>
         </div>
       </div>
