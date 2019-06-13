@@ -10,7 +10,6 @@ connectDB();
 //Init Middleware
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 //Define Routes
 app.use('/api/users', require('./routes/users'));
@@ -22,9 +21,9 @@ if (process.env.NODE_DEV === 'production') {
   //set statis folder
   app.use(express.static('client/build'));
 
-  app.get('*', (req, res) =>
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-  );
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
 }
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
