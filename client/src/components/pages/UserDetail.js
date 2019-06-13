@@ -3,7 +3,6 @@ import AuthContext from '../../contexts/auth/AuthContext';
 
 const UserDetail = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
 
   return (
     <div className="ui segment">
