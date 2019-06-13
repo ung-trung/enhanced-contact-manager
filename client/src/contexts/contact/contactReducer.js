@@ -38,7 +38,8 @@ export default (state, action) => {
           return (
             contact.name.match(regex) ||
             contact.email.match(regex) ||
-            contact.phone.match(regex)
+            contact.phone.match(regex) ||
+            contact.type.match(regex)
           );
         })
       };
