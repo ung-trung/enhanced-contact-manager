@@ -10,6 +10,7 @@ connectDB();
 //Init Middleware
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 //Define Routes
 app.use('/api/users', require('./routes/users'));
