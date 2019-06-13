@@ -4,7 +4,7 @@ import ContactContext from '../../contexts/contact/ContactContext';
 
 const ContactEdit = () => {
   const { contact, setNeedEdit } = useContext(ContactItemContext);
-  const { id, name, email, phone, type } = contact;
+  const { _id, name, email, phone, type } = contact;
 
   const [newName, setNewName] = useState(name);
   const [newEmail, setNewEmail] = useState(email);
@@ -16,7 +16,7 @@ const ContactEdit = () => {
   const onSubmit = e => {
     e.preventDefault();
     editContact({
-      id,
+      _id,
       name: newName,
       email: newEmail,
       phone: newPhone,

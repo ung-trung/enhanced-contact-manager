@@ -14,6 +14,7 @@ import {
   LOGOUT,
   CLEAR_ERRORS
 } from '../types';
+import { isArray } from 'util';
 
 const initialState = {
   token: localStorage.getItem('token'),
@@ -27,9 +28,8 @@ const AuthState = props => {
 
   // Load User
   const loadUser = useCallback(async () => {
-    if (localStorage.token) {
-      setAuthToken(localStorage.token);
-    }
+    setAuthToken(localStorage.token);
+
     try {
       const res = await axios.get('/api/auth');
       dispatch({ type: USER_LOADED, payload: res.data });
@@ -49,6 +49,14 @@ const AuthState = props => {
       const { data } = await axios.post('/api/users', formData, config);
       dispatch({ type: REGISTER_SUCCESS, payload: data });
     } catch (err) {
+      const { errors } = err.response.data;
+
+      if (isArray(errors)) {
+        errors.forEach(error =>
+          dispatch({ type: REGISTER_FAIL, payload: error.msg })
+        );
+      }
+
       dispatch({ type: REGISTER_FAIL, payload: err.response.data.msg });
     }
   };
@@ -69,6 +77,7 @@ const AuthState = props => {
   };
 
   // Logout
+  const logoutUser = () => dispatch({ type: LOGOUT });
 
   // Clear Error
   const clearErrors = useCallback(() => dispatch({ type: CLEAR_ERRORS }), []);
@@ -83,7 +92,8 @@ const AuthState = props => {
         registerUser,
         clearErrors,
         loadUser,
-        loginUser
+        loginUser,
+        logoutUser
       }}>
       {props.children}
     </AuthContext.Provider>

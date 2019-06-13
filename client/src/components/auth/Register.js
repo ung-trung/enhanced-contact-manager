@@ -97,7 +97,6 @@ const Register = props => {
                   placeholder="Password"
                   onChange={e => setPassword(e.target.value)}
                   required
-                  minLength={6}
                 />
               </div>
               <div className="field">
@@ -107,7 +106,6 @@ const Register = props => {
                   value={password2}
                   placeholder="Confirm your password"
                   onChange={e => setPassword2(e.target.value)}
-                  minLength={6}
                 />
               </div>
               <button

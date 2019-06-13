@@ -6,7 +6,7 @@ import ContactItemContext from '../../contexts/ContactItemContext';
 const ContactDetail = () => {
   const { setNeedEdit, contact } = useContext(ContactItemContext);
 
-  const { id, name, email, phone, type } = contact;
+  const { _id, name, email, phone, type } = contact;
 
   const { deleteContact } = useContext(ContactContext);
 
@@ -36,7 +36,7 @@ const ContactDetail = () => {
           </button>
           <button
             className="ui negative button"
-            onClick={() => deleteContact(id)}>
+            onClick={() => deleteContact(_id)}>
             Remove
           </button>
         </div>
